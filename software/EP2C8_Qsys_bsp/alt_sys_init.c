@@ -2,9 +2,9 @@
  * alt_sys_init.c - HAL initialization source
  *
  * Machine generated for CPU 'nios2' in SOPC Builder design 'nios2'
- * SOPC Builder design path: D:/altera/project/EP2C8_Qsys/nios2.sopcinfo
+ * SOPC Builder design path: E:/altera/13.0/project/EP2C8_TX_Qsys/nios2.sopcinfo
  *
- * Generated: Thu Mar 08 18:12:10 CST 2018
+ * Generated: Fri Mar 09 21:37:08 CST 2018
  */
 
 /*
@@ -78,7 +78,6 @@ ALTERA_AVALON_TIMER_INSTANCE ( SYSTIMER, systimer);
 ALTERA_AVALON_TIMER_INSTANCE ( TIMESTAMP, timestamp);
 ALTERA_AVALON_UART_INSTANCE ( UART1, uart1);
 ALTERA_AVALON_UART_INSTANCE ( UART2, uart2);
-ALTERA_AVALON_UART_INSTANCE ( UART3, uart3);
 OC_I2C_MASTER_INSTANCE ( OC_I2C_MASTER_0, oc_i2c_master_0);
 
 /*
@@ -109,6 +108,5 @@ void alt_sys_init( void )
     ALTERA_AVALON_SYSID_QSYS_INIT ( SYSID, sysid);
     ALTERA_AVALON_UART_INIT ( UART1, uart1);
     ALTERA_AVALON_UART_INIT ( UART2, uart2);
-    ALTERA_AVALON_UART_INIT ( UART3, uart3);
     OC_I2C_MASTER_INIT ( OC_I2C_MASTER_0, oc_i2c_master_0);
 }
