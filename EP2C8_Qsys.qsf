@@ -103,44 +103,20 @@ set_location_assignment PIN_43 -to sdram_dq[12]
 set_location_assignment PIN_42 -to sdram_dq[13]
 set_location_assignment PIN_41 -to sdram_dq[14]
 set_location_assignment PIN_40 -to sdram_dq[15]
-set_location_assignment PIN_104 -to LEDA
-set_location_assignment PIN_103 -to LEDB
-set_location_assignment PIN_101 -to LEDC
-set_location_assignment PIN_100 -to LEDD
-set_location_assignment PIN_51 -to LEDE
-set_location_assignment PIN_63 -to LEDF
-set_location_assignment PIN_67 -to LEDG
-set_location_assignment PIN_71 -to LED_0
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_parameter -name CYCLONEII_SAFE_WRITE VERIFIED_SAFE
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE POST_FIT -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name QIP_FILE nios2/synthesis/nios2.qip
-set_global_assignment -name BDF_FILE EP2C8_Qsys.bdf
-set_location_assignment PIN_104 -to LED0
-set_location_assignment PIN_103 -to LED1
-set_location_assignment PIN_101 -to LED2
-set_location_assignment PIN_100 -to LED3
 set_location_assignment PIN_71 -to RXD_2
-set_location_assignment PIN_91 -to RXD_3
 set_location_assignment PIN_72 -to TXD_2
-set_location_assignment PIN_71 -to TXD_3
-set_global_assignment -name BDF_FILE sdram_test.bdf
-set_location_assignment PIN_63 -to LED[0]
 set_location_assignment PIN_51 -to LED[1]
 set_location_assignment PIN_120 -to LED[2]
 set_location_assignment PIN_132 -to LED[3]
-set_location_assignment PIN_89 -to key[0]
-set_location_assignment PIN_88 -to key[1]
-set_location_assignment PIN_90 -to key[2]
-set_location_assignment PIN_51 -to LED[4]
-set_location_assignment PIN_89 -to KEY[0]
-set_location_assignment PIN_88 -to KEY[1]
-set_location_assignment PIN_63 -to KEY[2]
-set_location_assignment PIN_89 -to RCLK
-set_location_assignment PIN_74 -to RA
-set_location_assignment PIN_76 -to RB
-set_location_assignment PIN_81 -to RC
-set_location_assignment PIN_87 -to RD
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name USE_SIGNALTAP_FILE reset.stp
+set_location_assignment PIN_63 -to flash_light
+set_global_assignment -name SLD_FILE "D:/altera/project/EP2C8_TX_Qsys/reset_auto_stripped.stp"
+set_global_assignment -name QIP_FILE nios2/synthesis/nios2.qip
+set_global_assignment -name BDF_FILE EP2C8_Qsys.bdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
