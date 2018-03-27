@@ -1,27 +1,21 @@
-`define BRIGHTNESS 	3					//定义8级彩条的亮度
-`define BLACK		0					//定义黑色亮度级别
-//`define HDisplay	800				//定义有效显示宽度
-//`define VDisplay	600					//定义有效显示高度
-//`define HTotal		1056				//定义HTotal
-//`define VTotal		628					//定义VTotal
-//`define HSYNC_WITH	128					//行同步宽度
+`define BRIGHTNESS 	3			// brightness level
+`define BLACK		0					//black level
+`define HDisplay	800			//horizontal active
+`define VDisplay	600			//vertical active
+`define HTotal		1056		//HTotal
+`define VTotal		628			//VTotal
+`define HSYNC_WITH	128		//hsync width
+`define HSYNC_FRONT	40		//hsync front porch
+`define HSYNC_BACK	88		//hsync back porch
+`define VSYNC_WITH	4			//vsync width
+`define VSYNC_FRONT	1			//vsync front porch
+`define VSYNC_BACK	23		//vsync back porch
 
-`define HDisplay	80				//定义有效显示宽度
-`define VDisplay	60					//定义有效显示高度
-`define HTotal		104				//定义HTotal
-`define VTotal		88					//定义VTotal
-`define HSYNC_WITH	12					//行同步宽度
-
-`define HSYNC_FRONT	4					//行同步前肩
-`define HSYNC_BACK	8					//行同步后肩
-`define VSYNC_WITH	4					//场同步宽度
-`define VSYNC_FRONT	1					//场同步前肩
-`define VSYNC_BACK	23					//场同步后肩
-
-module vga_2bit(clock,reset_n,Hs,Vs,Blank,R,G,B,SEL);	//定义模块结构
+module vga_2bit(clock,reset_n,Hs,Vs,Blank,R,G,B,SEL);	
 				
-	input clock,SEL;						//定义输入时钟引脚
-	input reset_n;
+	input clock;					//vga clock
+	input SEL;						//patten select
+	input reset_n;				//reset signal,low active
 	output Hs,Vs,Blank;
 	output [1:0] R,G,B;
 	
@@ -145,7 +139,7 @@ begin
 				R_reg<=`BRIGHTNESS;
 				G_reg<=`BRIGHTNESS;
 				B_reg<=`BLACK;
-			end	else if(count_h==`HDisplay/8*2-1)	begin		//青色
+			end	else if(count_h==`HDisplay/8*2-1)	begin		//cyan
 				R_reg<=`BLACK;
 				G_reg<=`BRIGHTNESS;
 				B_reg<=`BRIGHTNESS;
@@ -153,7 +147,7 @@ begin
 				R_reg<=`BLACK;
 				G_reg<=`BRIGHTNESS;
 				B_reg<=`BLACK;
-			end	else if(count_h==`HDisplay/8*4-1)	begin		//粉色
+			end	else if(count_h==`HDisplay/8*4-1)	begin		//pink
 				R_reg<=`BRIGHTNESS;
 				G_reg<=`BLACK;
 				B_reg<=`BRIGHTNESS;
