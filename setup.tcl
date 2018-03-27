@@ -19,7 +19,8 @@ set_location_assignment PIN_71 -to RXD_2
 set_location_assignment PIN_72 -to TXD_2
 
 #LED
-set_location_assignment PIN_63 -to LED[0]
+set_location_assignment PIN_63 -to flash_light
+//set_location_assignment PIN_63 -to LED[0]
 set_location_assignment PIN_51 -to LED[1]
 set_location_assignment PIN_120 -to LED[2]
 set_location_assignment PIN_132 -to LED[3]
@@ -73,3 +74,13 @@ set_location_assignment PIN_74 -to RA
 set_location_assignment PIN_76 -to RB
 set_location_assignment PIN_81 -to RC
 set_location_assignment PIN_87 -to RD
+
+#VGA OUT
+set_location_assignment PIN_4 -to R[0]
+set_location_assignment PIN_3 -to R[1]
+set_location_assignment PIN_8 -to G[0]
+set_location_assignment PIN_9 -to G[1]
+set_location_assignment PIN_24 -to B[0]
+set_location_assignment PIN_25 -to B[1]
+set_location_assignment PIN_31 -to Hs
+set_location_assignment PIN_32 -to Vs

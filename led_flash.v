@@ -4,7 +4,7 @@ module led_flash( in_clk,reset_n,flash);
    output flash;
    
    reg flash;
-   reg [23:0]counter_temp;
+   reg [27:0]counter_temp;
 
 parameter OSC_CLOCK=27000000;
 initial
