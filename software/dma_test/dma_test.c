@@ -35,10 +35,12 @@ int main()
   alt_dma_rxchan rxchan;
   //DDR2_BASE
   base_source=SDRAM_BASE;
-  base_dest=SDRAM_BASE;
+  base_dest=ONCHIP_RAM_BASE;
+  //base_dest=SDRAM_BASE;
   offset_source=0x100000;
-  offset_dest=0x200000;
-  size_byte=0x10000;
+  offset_dest=0x00000;
+  //offset_dest=0x200000;
+  size_byte=0x1000;
 
   ddr_dword1=base_source+offset_source;
   ddr_dword2=base_dest+offset_dest;
@@ -46,6 +48,8 @@ int main()
 	{
 	  *ddr_dword1=i;
 	  ddr_dword1++;
+	  *ddr_dword2=0;
+	  ddr_dword2++;
 	}
   timestamp_freq=alt_timestamp_freq();
   printf("system freq= %ld Hz\n", timestamp_freq);
@@ -53,23 +57,26 @@ int main()
 
 	 //-----------------------------------------------------------
 	 //打开发送通道
-	 if ((txchan = alt_dma_txchan_open("/dev/dma_0")) == NULL)
+	 if ((txchan = alt_dma_txchan_open(DMA_0_NAME)) == NULL)
 	 {
-		 printf ("Failed to open transmit channel /dev/dma_0\n");
+		 printf ("Failed to open transmit channel %s\n",DMA_0_NAME);
 		 exit (1);
 	 }
 	 else
-		 printf("打开发送通道.\n");
+		 printf("open send success,can transmit size=0x%x\n",alt_dma_txchan_space(txchan));
 	 //打开接收通道
-	if ((rxchan = alt_dma_rxchan_open("/dev/dma_0")) == NULL)
+	if ((rxchan = alt_dma_rxchan_open(DMA_0_NAME)) == NULL)
 	{
-	  printf ("Failed to open receive channel /dev/dma_0\n");
+	  printf ("Failed to open receive channel %s\n",DMA_0_NAME);
 	  exit (1);
 	}
 	else
-	  printf("打开接收通道.\n");
+	  printf("open receive success,can receive depth=0x%x\n",alt_dma_rxchan_depth(rxchan));
 	//start send
      ddr_dword1=base_source+offset_source;
+     //alt_dma_txchan_ioctl(txchan, ALT_DMA_TX_STREAM_ON|ALT_DMA_SET_MODE_16, NULL);
+     //alt_dma_rxchan_ioctl(rxchan, ALT_DMA_RX_STREAM_ON|ALT_DMA_SET_MODE_16, NULL);
+     printf("transmit size=0x%x\n",alt_dma_txchan_space(txchan));
      if (alt_dma_txchan_send(    txchan,
     		 	 	 	 	 	 ddr_dword1,
     		 	 	 	 	 	 size_byte,
@@ -82,7 +89,7 @@ int main()
      else
      {
     	 //t0 = alt_timestamp();
-    	 printf("开始发送.\n");
+    	 printf("start send.\n");
      }
      //start receive
      ddr_dword2=base_dest+offset_dest;
@@ -98,19 +105,27 @@ int main()
      else
      {
     	 t0 = alt_timestamp();
-    	 printf("开始接收.\n");
+    	 printf("start receive.\n");
      }
      //-----------------------------------------------------------
-     /* 等待发送结束 */
+     /* waiting transmit over */
      while (!tx_done);
      t1 = alt_timestamp();
      printf ("Transfer successful!\n");
      dt=t1-t0;
      printf("dma dword transmit: t0=%ld t1=%ld dt=%ld time=%fs\n", t0,t1,dt,(double)dt/timestamp_freq);
      //-----------------------------------------------------------
-     //关闭DMA接收信道
+     ddr_dword2=base_dest+offset_dest;
+     for(i=0;i<size_byte/4;i++)		//generate data,size is 1M byte
+     {
+    	 if( *ddr_dword2 ==i) ddr_dword2++;
+    	 else break;
+     }
+     if(i==size_byte/4) printf("data verify ok\n");
+     else printf("data verify fail,error locate=0x%x\n",i);
+     //close dma channel
      alt_dma_txchan_close(txchan);
-
+     alt_dma_rxchan_close(rxchan);
 
      return 0;
 
