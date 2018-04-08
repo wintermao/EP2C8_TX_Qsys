@@ -35,14 +35,14 @@
      SEL = 0;
      #`delay
      SEL = 1;
-     #`delay
-     SEL = 0;
-     #`delay
-     SEL = 1;     
-     #`delay
-     SEL = 0;
-     #`delay
-     SEL = 1;
+//     #`delay
+//     SEL = 0;
+//     #`delay
+//     SEL = 1;     
+//     #`delay
+//     SEL = 0;
+//     #`delay
+//     SEL = 1;
    end
 
 

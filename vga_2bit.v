@@ -167,8 +167,8 @@ begin
 		end		
 	end else begin
 		R_reg<=R_reg;
-		G_reg<=R_reg;
-		B_reg<=R_reg;
+		G_reg<=G_reg;
+		B_reg<=B_reg;
 	end
 end
 
