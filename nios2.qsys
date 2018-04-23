@@ -11,11 +11,6 @@
 {
    element $${FILENAME}
    {
-      datum _sortIndex
-      {
-         value = "0";
-         type = "int";
-      }
    }
    element altpll
    {
@@ -29,7 +24,7 @@
    {
       datum baseAddress
       {
-         value = "16793848";
+         value = "16787696";
          type = "String";
       }
    }
@@ -49,19 +44,27 @@
          type = "int";
       }
    }
+   element dma_0.control_port_slave
+   {
+      datum baseAddress
+      {
+         value = "16787456";
+         type = "String";
+      }
+   }
    element sysid.control_slave
    {
       datum baseAddress
       {
-         value = "16793856";
+         value = "16787704";
          type = "String";
       }
    }
-   element dma_receive_0
+   element dma_0
    {
       datum _sortIndex
       {
-         value = "16";
+         value = "17";
          type = "int";
       }
    }
@@ -69,7 +72,7 @@
    {
       datum baseAddress
       {
-         value = "16789504";
+         value = "16781312";
          type = "String";
       }
    }
@@ -85,7 +88,7 @@
    {
       datum baseAddress
       {
-         value = "16791552";
+         value = "16783360";
          type = "String";
       }
    }
@@ -94,14 +97,6 @@
       datum _sortIndex
       {
          value = "5";
-         type = "int";
-      }
-   }
-   element master_0
-   {
-      datum _sortIndex
-      {
-         value = "18";
          type = "int";
       }
    }
@@ -141,15 +136,31 @@
    {
       datum baseAddress
       {
-         value = "16793824";
+         value = "16787680";
          type = "String";
       }
    }
-   element sdram_master_0.s1
+   element vga_4bit_0.s0
    {
       datum baseAddress
       {
-         value = "16793600";
+         value = "16787712";
+         type = "String";
+      }
+   }
+   element timestamp.s1
+   {
+      datum baseAddress
+      {
+         value = "16787616";
+         type = "String";
+      }
+   }
+   element onchip_ram.s1
+   {
+      datum baseAddress
+      {
+         value = "16786432";
          type = "String";
       }
    }
@@ -157,23 +168,7 @@
    {
       datum baseAddress
       {
-         value = "16793696";
-         type = "String";
-      }
-   }
-   element uart1.s1
-   {
-      datum baseAddress
-      {
-         value = "16793728";
-         type = "String";
-      }
-   }
-   element oc_i2c_master_0.s1
-   {
-      datum baseAddress
-      {
-         value = "16793632";
+         value = "16787552";
          type = "String";
       }
    }
@@ -185,19 +180,27 @@
          type = "String";
       }
    }
+   element uart1.s1
+   {
+      datum baseAddress
+      {
+         value = "16787584";
+         type = "String";
+      }
+   }
+   element oc_i2c_master_0.s1
+   {
+      datum baseAddress
+      {
+         value = "16787488";
+         type = "String";
+      }
+   }
    element pio_led.s1
    {
       datum baseAddress
       {
-         value = "16793664";
-         type = "String";
-      }
-   }
-   element onchip_ram.s1
-   {
-      datum baseAddress
-      {
-         value = "16781312";
+         value = "16787520";
          type = "String";
       }
    }
@@ -205,15 +208,7 @@
    {
       datum baseAddress
       {
-         value = "16793792";
-         type = "String";
-      }
-   }
-   element timestamp.s1
-   {
-      datum baseAddress
-      {
-         value = "16793760";
+         value = "16787648";
          type = "String";
       }
    }
@@ -230,14 +225,6 @@
       datum _sortIndex
       {
          value = "3";
-         type = "int";
-      }
-   }
-   element sdram_master_0
-   {
-      datum _sortIndex
-      {
-         value = "17";
          type = "int";
       }
    }
@@ -281,6 +268,14 @@
          type = "int";
       }
    }
+   element vga_4bit_0
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
+      }
+   }
    element vga_clk
    {
       datum _sortIndex
@@ -304,7 +299,7 @@
  <parameter name="projectName" value="EP2C8_Qsys.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1523184463831" />
+ <parameter name="timeStamp" value="1524501878030" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk_clk_in" internal="clk.clk_in" type="clock" dir="end">
@@ -351,10 +346,9 @@
    type="conduit"
    dir="end" />
  <interface name="i2c" internal="oc_i2c_master_0.global" type="conduit" dir="end" />
- <interface name="vga_clk" internal="vga_clk.out_clk" type="clock" dir="start" />
  <interface
-   name="dma_receive_0_conduit_end"
-   internal="dma_receive_0.conduit_end"
+   name="vga_4bit_0_vga"
+   internal="vga_4bit_0.VGA"
    type="conduit"
    dir="end" />
  <module kind="clock_source" version="13.0" enabled="1" name="clk">
@@ -464,8 +458,8 @@
   <parameter name="tightlyCoupledInstructionMaster1AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster2AddrWidth" value="1" />
   <parameter name="tightlyCoupledInstructionMaster3AddrWidth" value="1" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='onchip_ram.s1' start='0x1001000' end='0x1002000' /><slave name='epcs_flash.epcs_control_port' start='0x1003000' end='0x1003800' /><slave name='nios2.jtag_debug_module' start='0x1003800' end='0x1004000' /></address-map>]]></parameter>
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='onchip_ram.s1' start='0x1001000' end='0x1002000' /><slave name='epcs_flash.epcs_control_port' start='0x1003000' end='0x1003800' /><slave name='nios2.jtag_debug_module' start='0x1003800' end='0x1004000' /><slave name='sdram_master_0.s1' start='0x1004000' end='0x1004020' /><slave name='oc_i2c_master_0.s1' start='0x1004020' end='0x1004040' /><slave name='pio_led.s1' start='0x1004040' end='0x1004060' /><slave name='uart2.s1' start='0x1004060' end='0x1004080' /><slave name='uart1.s1' start='0x1004080' end='0x10040A0' /><slave name='timestamp.s1' start='0x10040A0' end='0x10040C0' /><slave name='systimer.s1' start='0x10040C0' end='0x10040E0' /><slave name='altpll.pll_slave' start='0x10040E0' end='0x10040F0' /><slave name='dma_receive_0.avalon_slave_0' start='0x10040F0' end='0x10040F8' /><slave name='jtag_uart.avalon_jtag_slave' start='0x10040F8' end='0x1004100' /><slave name='sysid.control_slave' start='0x1004100' end='0x1004108' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='epcs_flash.epcs_control_port' start='0x1001000' end='0x1001800' /><slave name='nios2.jtag_debug_module' start='0x1001800' end='0x1002000' /><slave name='onchip_ram.s1' start='0x1002400' end='0x1002800' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /><slave name='epcs_flash.epcs_control_port' start='0x1001000' end='0x1001800' /><slave name='nios2.jtag_debug_module' start='0x1001800' end='0x1002000' /><slave name='onchip_ram.s1' start='0x1002400' end='0x1002800' /><slave name='dma_0.control_port_slave' start='0x1002800' end='0x1002820' /><slave name='oc_i2c_master_0.s1' start='0x1002820' end='0x1002840' /><slave name='pio_led.s1' start='0x1002840' end='0x1002860' /><slave name='uart2.s1' start='0x1002860' end='0x1002880' /><slave name='uart1.s1' start='0x1002880' end='0x10028A0' /><slave name='timestamp.s1' start='0x10028A0' end='0x10028C0' /><slave name='systimer.s1' start='0x10028C0' end='0x10028E0' /><slave name='altpll.pll_slave' start='0x10028E0' end='0x10028F0' /><slave name='jtag_uart.avalon_jtag_slave' start='0x10028F0' end='0x10028F8' /><slave name='sysid.control_slave' start='0x10028F8' end='0x1002900' /><slave name='vga_4bit_0.s0' start='0x1002900' end='0x1002904' /></address-map>]]></parameter>
   <parameter name="clockFrequency" value="96000000" />
   <parameter name="deviceFamilyName" value="Cyclone II" />
   <parameter name="internalIrqMaskSystemInfo" value="255" />
@@ -492,7 +486,7 @@
   <parameter name="initMemContent" value="false" />
   <parameter name="initializationFileName" value="onchip_mem.hex" />
   <parameter name="instanceID" value="NONE" />
-  <parameter name="memorySize" value="4096" />
+  <parameter name="memorySize" value="1024" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
   <parameter name="simAllowMRAMContentsFile" value="false" />
   <parameter name="simMemInitOnlyFilename" value="0" />
@@ -838,31 +832,29 @@
   <parameter name="EXPLICIT_CLOCK_RATE" value="40000000" />
   <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
  </module>
- <module kind="dma_receive" version="1.0" enabled="1" name="dma_receive_0">
+ <module kind="vga_4bit" version="1.0" enabled="1" name="vga_4bit_0">
   <parameter name="AUTO_CLOCK_CLOCK_RATE" value="96000000" />
+  <parameter name="AUTO_VGA_CLOCK_CLOCK_RATE" value="40000000" />
  </module>
- <module kind="sdram_master" version="1.0" enabled="1" name="sdram_master_0">
-  <parameter name="DMA_IDLE" value="0" />
-  <parameter name="READ" value="1" />
-  <parameter name="WAIT_READ" value="2" />
-  <parameter name="WRITE" value="3" />
-  <parameter name="WAIT_WRITE" value="4" />
-  <parameter name="CALC_NEXT" value="5" />
-  <parameter name="DMA_DONE" value="6" />
-  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="96000000" />
- </module>
- <module
-   kind="altera_jtag_avalon_master"
-   version="13.0"
-   enabled="1"
-   name="master_0">
-  <parameter name="USE_PLI" value="0" />
-  <parameter name="PLI_PORT" value="50000" />
-  <parameter name="COMPONENT_CLOCK" value="0" />
-  <parameter name="FAST_VER" value="0" />
-  <parameter name="FIFO_DEPTHS" value="2" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone II" />
-  <parameter name="AUTO_DEVICE" value="EP2C8T144C8" />
+ <module kind="altera_avalon_dma" version="13.0.1" enabled="1" name="dma_0">
+  <parameter name="allowByteTransactions" value="true" />
+  <parameter name="allowDoubleWordTransactions" value="true" />
+  <parameter name="allowHalfWordTransactions" value="true" />
+  <parameter name="allowQuadWordTransactions" value="true" />
+  <parameter name="allowWordTransactions" value="true" />
+  <parameter name="bigEndian" value="false" />
+  <parameter name="burstEnable" value="false" />
+  <parameter name="fifoDepth" value="1024" />
+  <parameter name="maxBurstSize" value="128" />
+  <parameter name="minimumDmaTransactionRegisterWidth" value="32" />
+  <parameter name="useRegistersForFIFO" value="false" />
+  <parameter name="avalonSpec" value="2.0" />
+  <parameter name="readAddressMap"><![CDATA[<address-map><slave name='sdram.s1' start='0x800000' end='0x1000000' /></address-map>]]></parameter>
+  <parameter name="readSlaveAddressWidthMax" value="24" />
+  <parameter name="readSlaveDataWidthMax" value="16" />
+  <parameter name="writeAddressMap"><![CDATA[<address-map><slave name='vga_4bit_0.s0' start='0x1002900' end='0x1002904' /></address-map>]]></parameter>
+  <parameter name="writeSlaveAddressWidthMax" value="25" />
+  <parameter name="writeSlaveDataWidthMax" value="32" />
  </module>
  <connection
    kind="avalon"
@@ -870,7 +862,7 @@
    start="nios2.instruction_master"
    end="nios2.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01003800" />
+  <parameter name="baseAddress" value="0x01001800" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -879,7 +871,7 @@
    start="nios2.data_master"
    end="nios2.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01003800" />
+  <parameter name="baseAddress" value="0x01001800" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -888,7 +880,7 @@
    start="nios2.data_master"
    end="onchip_ram.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01001000" />
+  <parameter name="baseAddress" value="0x01002400" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -897,7 +889,7 @@
    start="nios2.instruction_master"
    end="onchip_ram.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01001000" />
+  <parameter name="baseAddress" value="0x01002400" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -906,7 +898,7 @@
    start="nios2.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004100" />
+  <parameter name="baseAddress" value="0x010028f8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -915,7 +907,7 @@
    start="nios2.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x010040f8" />
+  <parameter name="baseAddress" value="0x010028f0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="avalon" version="13.0" start="nios2.data_master" end="sdram.s1">
@@ -990,7 +982,7 @@
    start="nios2.instruction_master"
    end="epcs_flash.epcs_control_port">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01003000" />
+  <parameter name="baseAddress" value="0x01001000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -999,7 +991,7 @@
    start="nios2.data_master"
    end="epcs_flash.epcs_control_port">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01003000" />
+  <parameter name="baseAddress" value="0x01001000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1023,7 +1015,7 @@
    start="nios2.data_master"
    end="altpll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x010040e0" />
+  <parameter name="baseAddress" value="0x010028e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.0" start="altpll.c0" end="nios2.clk" />
@@ -1040,7 +1032,7 @@
    start="nios2.data_master"
    end="systimer.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x010040c0" />
+  <parameter name="baseAddress" value="0x010028c0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.0" start="altpll.c0" end="timestamp.clk" />
@@ -1050,7 +1042,7 @@
    start="nios2.data_master"
    end="timestamp.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x010040a0" />
+  <parameter name="baseAddress" value="0x010028a0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1106,7 +1098,7 @@
    end="uart1.reset" />
  <connection kind="avalon" version="13.0" start="nios2.data_master" end="uart1.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004080" />
+  <parameter name="baseAddress" value="0x01002880" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="13.0" start="altpll.c0" end="uart2.clk" />
@@ -1118,7 +1110,7 @@
    end="uart2.reset" />
  <connection kind="avalon" version="13.0" start="nios2.data_master" end="uart2.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004060" />
+  <parameter name="baseAddress" value="0x01002860" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="interrupt" version="13.0" start="nios2.d_irq" end="uart1.irq">
@@ -1140,7 +1132,7 @@
    start="nios2.data_master"
    end="pio_led.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004040" />
+  <parameter name="baseAddress" value="0x01002840" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1164,7 +1156,7 @@
    start="nios2.data_master"
    end="oc_i2c_master_0.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004020" />
+  <parameter name="baseAddress" value="0x01002820" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1174,51 +1166,49 @@
    end="oc_i2c_master_0.s1_irq">
   <parameter name="irqNumber" value="6" />
  </connection>
+ <connection kind="clock" version="13.0" start="altpll.c0" end="vga_4bit_0.clock" />
+ <connection
+   kind="reset"
+   version="13.0"
+   start="clk.clk_reset"
+   end="vga_4bit_0.reset" />
+ <connection
+   kind="reset"
+   version="13.0"
+   start="nios2.jtag_debug_module_reset"
+   end="vga_4bit_0.reset" />
+ <connection
+   kind="avalon"
+   version="13.0"
+   start="nios2.data_master"
+   end="vga_4bit_0.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x01002900" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection kind="clock" version="13.0" start="altpll.c2" end="vga_clk.in_clk" />
  <connection
    kind="clock"
    version="13.0"
-   start="altpll.c0"
-   end="dma_receive_0.clock" />
+   start="vga_clk.out_clk"
+   end="vga_4bit_0.vga_clock" />
+ <connection kind="clock" version="13.0" start="altpll.c0" end="dma_0.clk" />
+ <connection kind="reset" version="13.0" start="clk.clk_reset" end="dma_0.reset" />
  <connection
    kind="reset"
    version="13.0"
    start="nios2.jtag_debug_module_reset"
-   end="dma_receive_0.reset" />
- <connection
-   kind="reset"
-   version="13.0"
-   start="clk.clk_reset"
-   end="dma_receive_0.reset" />
- <connection
-   kind="clock"
-   version="13.0"
-   start="altpll.c0"
-   end="sdram_master_0.clock_reset" />
- <connection
-   kind="reset"
-   version="13.0"
-   start="clk.clk_reset"
-   end="sdram_master_0.clock_reset_reset" />
- <connection
-   kind="reset"
-   version="13.0"
-   start="nios2.jtag_debug_module_reset"
-   end="sdram_master_0.clock_reset_reset" />
+   end="dma_0.reset" />
  <connection
    kind="avalon"
    version="13.0"
    start="nios2.data_master"
-   end="sdram_master_0.s1">
+   end="dma_0.control_port_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004000" />
+  <parameter name="baseAddress" value="0x01002800" />
   <parameter name="defaultConnection" value="false" />
  </connection>
- <connection
-   kind="avalon"
-   version="13.0"
-   start="sdram_master_0.read"
-   end="sdram.s1">
+ <connection kind="avalon" version="13.0" start="dma_0.read_master" end="sdram.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00800000" />
   <parameter name="defaultConnection" value="false" />
@@ -1226,93 +1216,14 @@
  <connection
    kind="avalon"
    version="13.0"
-   start="sdram_master_0.write"
-   end="onchip_ram.s1">
+   start="dma_0.write_master"
+   end="vga_4bit_0.s0">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01001000" />
+  <parameter name="baseAddress" value="0x01002900" />
   <parameter name="defaultConnection" value="false" />
  </connection>
- <connection
-   kind="avalon"
-   version="13.0"
-   start="sdram_master_0.write"
-   end="uart1.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004080" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection kind="clock" version="13.0" start="altpll.c0" end="master_0.clk" />
- <connection
-   kind="reset"
-   version="13.0"
-   start="clk.clk_reset"
-   end="master_0.clk_reset" />
- <connection
-   kind="reset"
-   version="13.0"
-   start="nios2.jtag_debug_module_reset"
-   end="master_0.clk_reset" />
- <connection
-   kind="avalon"
-   version="13.0"
-   start="master_0.master"
-   end="sdram_master_0.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="13.0"
-   start="master_0.master"
-   end="dma_receive_0.avalon_slave_0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x010040f0" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection kind="avalon" version="13.0" start="master_0.master" end="sdram.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00800000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="13.0"
-   start="master_0.master"
-   end="onchip_ram.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01001000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection kind="avalon" version="13.0" start="master_0.master" end="uart1.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01004080" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="interrupt"
-   version="13.0"
-   start="nios2.d_irq"
-   end="sdram_master_0.irq_s1">
+ <connection kind="interrupt" version="13.0" start="nios2.d_irq" end="dma_0.irq">
   <parameter name="irqNumber" value="7" />
- </connection>
- <connection
-   kind="avalon"
-   version="13.0"
-   start="nios2.data_master"
-   end="dma_receive_0.avalon_slave_0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x010040f0" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="13.0"
-   start="sdram_master_0.write"
-   end="dma_receive_0.avalon_slave_0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x010040f0" />
-  <parameter name="defaultConnection" value="false" />
  </connection>
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="0" />
