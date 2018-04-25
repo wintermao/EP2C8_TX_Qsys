@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2018-4-8 19:10:21</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1523185821108</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2018-4-25 19:02:14</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1524654134560</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\altera\project\EP2C8_TX_Qsys\software\EP2C8_Qsys_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>D:\altera\project\EP2C8_TX_Qsys\nios2.sopcinfo</SopcDesignFile>
@@ -905,81 +905,81 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>onchip_ram</slaveDescriptor>
-                <addressRange>0x01001000 - 0x01001FFF</addressRange>
-                <addressSpan>4096</addressSpan>
-                <attributes>memory</attributes>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>epcs_flash</slaveDescriptor>
-                <addressRange>0x01003000 - 0x010037FF</addressRange>
+                <addressRange>0x01001000 - 0x010017FF</addressRange>
                 <addressSpan>2048</addressSpan>
                 <attributes>flash, memory, non-volatile</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sdram_master_0</slaveDescriptor>
-                <addressRange>0x01004000 - 0x0100401F</addressRange>
+                <slaveDescriptor>onchip_ram</slaveDescriptor>
+                <addressRange>0x01002400 - 0x010027FF</addressRange>
+                <addressSpan>1024</addressSpan>
+                <attributes>memory</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>dma_0</slaveDescriptor>
+                <addressRange>0x01002800 - 0x0100281F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>oc_i2c_master_0</slaveDescriptor>
-                <addressRange>0x01004020 - 0x0100403F</addressRange>
+                <addressRange>0x01002820 - 0x0100283F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>pio_led</slaveDescriptor>
-                <addressRange>0x01004040 - 0x0100405F</addressRange>
+                <addressRange>0x01002840 - 0x0100285F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>uart2</slaveDescriptor>
-                <addressRange>0x01004060 - 0x0100407F</addressRange>
+                <addressRange>0x01002860 - 0x0100287F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>uart1</slaveDescriptor>
-                <addressRange>0x01004080 - 0x0100409F</addressRange>
+                <addressRange>0x01002880 - 0x0100289F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timestamp</slaveDescriptor>
-                <addressRange>0x010040A0 - 0x010040BF</addressRange>
+                <addressRange>0x010028A0 - 0x010028BF</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>systimer</slaveDescriptor>
-                <addressRange>0x010040C0 - 0x010040DF</addressRange>
+                <addressRange>0x010028C0 - 0x010028DF</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>altpll</slaveDescriptor>
-                <addressRange>0x010040E0 - 0x010040EF</addressRange>
+                <addressRange>0x010028E0 - 0x010028EF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>dma_receive_0</slaveDescriptor>
-                <addressRange>0x010040F0 - 0x010040F7</addressRange>
-                <addressSpan>8</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x010040F8 - 0x010040FF</addressRange>
+                <addressRange>0x010028F0 - 0x010028F7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x01004100 - 0x01004107</addressRange>
+                <addressRange>0x010028F8 - 0x010028FF</addressRange>
                 <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>vga_4bit_0</slaveDescriptor>
+                <addressRange>0x01002900 - 0x01002903</addressRange>
+                <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>
         <LinkerSection>

@@ -11,6 +11,11 @@
 {
    element $${FILENAME}
    {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
    }
    element altpll
    {
@@ -25,14 +30,6 @@
       datum baseAddress
       {
          value = "16787696";
-         type = "String";
-      }
-   }
-   element dma_receive_0.avalon_slave_0
-   {
-      datum baseAddress
-      {
-         value = "16793840";
          type = "String";
       }
    }
@@ -64,7 +61,7 @@
    {
       datum _sortIndex
       {
-         value = "17";
+         value = "16";
          type = "int";
       }
    }
@@ -148,22 +145,6 @@
          type = "String";
       }
    }
-   element timestamp.s1
-   {
-      datum baseAddress
-      {
-         value = "16787616";
-         type = "String";
-      }
-   }
-   element onchip_ram.s1
-   {
-      datum baseAddress
-      {
-         value = "16786432";
-         type = "String";
-      }
-   }
    element uart2.s1
    {
       datum baseAddress
@@ -188,6 +169,14 @@
          type = "String";
       }
    }
+   element systimer.s1
+   {
+      datum baseAddress
+      {
+         value = "16787648";
+         type = "String";
+      }
+   }
    element oc_i2c_master_0.s1
    {
       datum baseAddress
@@ -196,19 +185,27 @@
          type = "String";
       }
    }
+   element timestamp.s1
+   {
+      datum baseAddress
+      {
+         value = "16787616";
+         type = "String";
+      }
+   }
+   element onchip_ram.s1
+   {
+      datum baseAddress
+      {
+         value = "16786432";
+         type = "String";
+      }
+   }
    element pio_led.s1
    {
       datum baseAddress
       {
          value = "16787520";
-         type = "String";
-      }
-   }
-   element systimer.s1
-   {
-      datum baseAddress
-      {
-         value = "16787648";
          type = "String";
       }
    }
@@ -272,7 +269,7 @@
    {
       datum _sortIndex
       {
-         value = "16";
+         value = "17";
          type = "int";
       }
    }
@@ -299,7 +296,7 @@
  <parameter name="projectName" value="EP2C8_Qsys.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1524501878030" />
+ <parameter name="timeStamp" value="1524639711899" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk_clk_in" internal="clk.clk_in" type="clock" dir="end">
@@ -349,6 +346,11 @@
  <interface
    name="vga_4bit_0_vga"
    internal="vga_4bit_0.VGA"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="vga_4bit_0_fifo_staus"
+   internal="vga_4bit_0.fifo_staus"
    type="conduit"
    dir="end" />
  <module kind="clock_source" version="13.0" enabled="1" name="clk">
@@ -832,10 +834,6 @@
   <parameter name="EXPLICIT_CLOCK_RATE" value="40000000" />
   <parameter name="NUM_CLOCK_OUTPUTS" value="1" />
  </module>
- <module kind="vga_4bit" version="1.0" enabled="1" name="vga_4bit_0">
-  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="96000000" />
-  <parameter name="AUTO_VGA_CLOCK_CLOCK_RATE" value="40000000" />
- </module>
  <module kind="altera_avalon_dma" version="13.0.1" enabled="1" name="dma_0">
   <parameter name="allowByteTransactions" value="true" />
   <parameter name="allowDoubleWordTransactions" value="true" />
@@ -855,6 +853,10 @@
   <parameter name="writeAddressMap"><![CDATA[<address-map><slave name='vga_4bit_0.s0' start='0x1002900' end='0x1002904' /></address-map>]]></parameter>
   <parameter name="writeSlaveAddressWidthMax" value="25" />
   <parameter name="writeSlaveDataWidthMax" value="32" />
+ </module>
+ <module kind="vga_4bit" version="1.0" enabled="1" name="vga_4bit_0">
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="96000000" />
+  <parameter name="AUTO_VGA_CLOCK_CLOCK_RATE" value="40000000" />
  </module>
  <connection
    kind="avalon"
@@ -1166,32 +1168,7 @@
    end="oc_i2c_master_0.s1_irq">
   <parameter name="irqNumber" value="6" />
  </connection>
- <connection kind="clock" version="13.0" start="altpll.c0" end="vga_4bit_0.clock" />
- <connection
-   kind="reset"
-   version="13.0"
-   start="clk.clk_reset"
-   end="vga_4bit_0.reset" />
- <connection
-   kind="reset"
-   version="13.0"
-   start="nios2.jtag_debug_module_reset"
-   end="vga_4bit_0.reset" />
- <connection
-   kind="avalon"
-   version="13.0"
-   start="nios2.data_master"
-   end="vga_4bit_0.s0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x01002900" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
  <connection kind="clock" version="13.0" start="altpll.c2" end="vga_clk.in_clk" />
- <connection
-   kind="clock"
-   version="13.0"
-   start="vga_clk.out_clk"
-   end="vga_4bit_0.vga_clock" />
  <connection kind="clock" version="13.0" start="altpll.c0" end="dma_0.clk" />
  <connection kind="reset" version="13.0" start="clk.clk_reset" end="dma_0.reset" />
  <connection
@@ -1213,6 +1190,34 @@
   <parameter name="baseAddress" value="0x00800000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
+ <connection kind="interrupt" version="13.0" start="nios2.d_irq" end="dma_0.irq">
+  <parameter name="irqNumber" value="7" />
+ </connection>
+ <connection kind="clock" version="13.0" start="altpll.c0" end="vga_4bit_0.clock" />
+ <connection
+   kind="reset"
+   version="13.0"
+   start="clk.clk_reset"
+   end="vga_4bit_0.reset" />
+ <connection
+   kind="reset"
+   version="13.0"
+   start="nios2.jtag_debug_module_reset"
+   end="vga_4bit_0.reset" />
+ <connection
+   kind="avalon"
+   version="13.0"
+   start="nios2.data_master"
+   end="vga_4bit_0.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x01002900" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="clock"
+   version="13.0"
+   start="altpll.c2"
+   end="vga_4bit_0.vga_clock" />
  <connection
    kind="avalon"
    version="13.0"
@@ -1221,9 +1226,6 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x01002900" />
   <parameter name="defaultConnection" value="false" />
- </connection>
- <connection kind="interrupt" version="13.0" start="nios2.d_irq" end="dma_0.irq">
-  <parameter name="irqNumber" value="7" />
  </connection>
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="0" />

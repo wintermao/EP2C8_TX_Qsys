@@ -24,14 +24,18 @@ module vga_4bit (
 		output wire [1:0] R,
 		output wire [1:0] G,
 		output wire [1:0] B
+		//monitor
+		,
+		output wire fifo_writefull,
+		output wire fifo_readempty
 	);
 
 	reg fifo_write;
 	reg [31:0] fifo_writedata;
-	wire fifo_writefull;
+	//wire fifo_writefull;
 	wire fifo_read;
 	wire [3:0] fifo_readdata;
-	wire fifo_readempty;
+	//wire fifo_readempty;
 	wire reset;
 	
 	always @(posedge clk or negedge reset_n)
@@ -65,7 +69,7 @@ module vga_4bit (
 				.rdclk (vga_clk),
 				.wrreq (fifo_write),
 				.data (fifo_writedata),
-				.rdempty (),
+				.rdempty (fifo_readempty),
 				.wrusedw (),
 				.wrfull (fifo_writefull),
 				.q (fifo_readdata)
@@ -77,14 +81,14 @@ module vga_4bit (
 				// synopsys translate_on
 				);
 	defparam
-		dcfifo_component.intended_device_family = "Cyclone IV",
+		dcfifo_component.intended_device_family = "Cyclone II",
 		dcfifo_component.lpm_numwords = 2048,
 		dcfifo_component.lpm_showahead = "ON",
 		dcfifo_component.lpm_type = "dcfifo",
 		dcfifo_component.lpm_width = 32,
 		dcfifo_component.lpm_width_r = 4,
 		dcfifo_component.lpm_widthu = 11,
-		dcfifo_component.lpm_widthu_r = 4,
+		dcfifo_component.lpm_widthu_r = 14,
 		dcfifo_component.overflow_checking = "ON",
 		dcfifo_component.rdsync_delaypipe = 3,
 		dcfifo_component.underflow_checking = "ON",

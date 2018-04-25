@@ -21,7 +21,7 @@ begin
     end
   else
     begin
-    	counter_temp=counter_temp+1;
+    	counter_temp=counter_temp+1'h1;
     	if(counter_temp>=(OSC_CLOCK/2))
     	begin
     		counter_temp=0;
