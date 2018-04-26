@@ -1,11 +1,11 @@
 //ADDR defines
-`define S_ADDR													0
-`define D_ADDR													1
-`define LONGTH													2
-`define CONTROL													3
-`define STATUS_ADDR											4
-`define START_ADDR											5
-`define WRUSEDW_ADDR										6
+`define VIDEO_BUFF											1'h0
+`define CONTROL													1'h1
+//`define LONGTH													2
+//`define CONTROL													3
+//`define STATUS_ADDR											4
+//`define START_ADDR											5
+//`define WRUSEDW_ADDR										6
 //state machine
 `define	DMA_IDLE				0
 `define	READ						1

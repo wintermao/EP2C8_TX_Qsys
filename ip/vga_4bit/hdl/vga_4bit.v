@@ -7,7 +7,7 @@
 // 
 // This file will not be automatically regenerated.  You should check it in
 // to your version control system if you want to keep it.
-
+`include "vga_defines.v"
 `timescale 1 ns / 1 ns
 module vga_4bit (
 		//avalon interface
@@ -17,6 +17,8 @@ module vga_4bit (
 		input  wire avs_s0_write,       //      .write
 		input  wire [31:0] avs_s0_writedata,   //      .writedata
 		output wire avs_s0_waitrequest, //      .waitrequest
+		output reg	avs_s0_irq,
+		input  wire avs_s0_address,
 		//vga interface
 		input wire	vga_clk,						//vga clock
 		output wire Hs,
@@ -37,6 +39,8 @@ module vga_4bit (
 	wire [3:0] fifo_readdata;
 	//wire fifo_readempty;
 	wire reset;
+	wire Blank_V;
+	reg Blank_V_last;
 	
 	always @(posedge clk or negedge reset_n)
 	begin
@@ -47,7 +51,8 @@ module vga_4bit (
 		end
 		else
 		begin
-			if(avs_s0_chipselect && avs_s0_write)	begin					//new data
+			if(avs_s0_chipselect & avs_s0_write & (avs_s0_address == `VIDEO_BUFF))	begin					//new data
+			//if(avs_s0_chipselect & avs_s0_write)	begin					//new data
 				fifo_writedata <= avs_s0_writedata;
 				fifo_write <= 1'h1;															//start write
 			end	else begin
@@ -60,12 +65,31 @@ module vga_4bit (
 	assign avs_s0_waitrequest = fifo_writefull;
 	assign reset = !reset_n;
 
-	
+	always @(posedge clk)
+	begin
+		Blank_V_last <= Blank_V;
+	end
+
+	always @(posedge clk or negedge reset_n)
+	begin
+		if (!reset_n)	begin
+			avs_s0_irq <= 1'h0;
+		end	else begin
+			if(Blank_V_last==1'h0 && Blank_V==1'h1) begin
+				avs_s0_irq <= 1'h1;
+			end else if(avs_s0_chipselect & avs_s0_write & (avs_s0_address == `CONTROL))	begin					//clear irq
+				avs_s0_irq <= 1'h0;	
+			end else begin
+				avs_s0_irq <= avs_s0_irq;
+			end
+		end
+	end
+		
 //initial dcfifo parameter
 	dcfifo	dcfifo_component (
 				.wrclk (clk),
 				.rdreq (fifo_read),
-				.aclr (reset),
+				.aclr (avs_s0_irq),
 				.rdclk (vga_clk),
 				.wrreq (fifo_write),
 				.data (fifo_writedata),
@@ -100,6 +124,7 @@ module vga_4bit (
 		.reset (reset),
 		.fifo_read (fifo_read),
 		.fifo_readdata (fifo_readdata),
+		.Blank_V(Blank_V),
 		.Hs (Hs),
 		.Vs (Vs),
 		.R (R),

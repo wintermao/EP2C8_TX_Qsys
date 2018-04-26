@@ -3,13 +3,14 @@
 module vga_4bit_graph
 (
 vga_clk,reset,
-fifo_read,fifo_readdata,
+fifo_read,fifo_readdata,Blank_V,
 Hs,Vs,R,G,B
 );
 	input vga_clk;							//vga clock		
 	input reset;								// reset,high level active
 	output fifo_read;			//fifo read request
 	input [3:0] fifo_readdata;	//fifo read data
+	output Blank_V;
 	//vga interface
 	output Hs,Vs;
 	output [1:0] R,G,B;
@@ -21,9 +22,12 @@ Hs,Vs,R,G,B
 	reg Blank_H,Blank_V;
 
 assign fifo_read = DE? 1'h1 : 1'h0;
-assign R_reg = fifo_readdata[0]? 2'h3 : 2'h0;
-assign G_reg = fifo_readdata[1]? 2'h3 : 2'h0;
-assign B_reg = fifo_readdata[2]? 2'h3 : 2'h0;
+assign R_reg = fifo_readdata[3]?  fifo_readdata[1:0] : (fifo_readdata[0]? 2'h3 : 2'h0);
+assign G_reg = fifo_readdata[3]?  fifo_readdata[1:0] : (fifo_readdata[1]? 2'h3 : 2'h0);
+assign B_reg = fifo_readdata[3]?  fifo_readdata[1:0] : (fifo_readdata[2]? 2'h3 : 2'h0);
+//assign R_reg = (fifo_readdata[0]? 2'h3 : 2'h0);
+//assign G_reg = (fifo_readdata[1]? 2'h3 : 2'h0);
+//assign B_reg = (fifo_readdata[2]? 2'h3 : 2'h0);
 
 //hsyc generate
 always @(posedge vga_clk or posedge reset)					
@@ -92,5 +96,6 @@ assign DE=~(Blank_H | Blank_V);		//DE out
 assign R=DE?R_reg:2'h0;					//r out
 assign G=DE?G_reg:2'h0;					//g out
 assign B=DE?B_reg:2'h0;					//b out
+
 endmodule
 
